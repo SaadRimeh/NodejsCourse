@@ -35,33 +35,6 @@ app.post('/api/students', (req, res) => {
     });
 });
 
-// ----------------------------------------------------
-// نقطة النهاية الجديدة للتعديل (PUT)
-// ----------------------------------------------------
-app.put('/api/students/:id' , (req , res)=>{
-    const studentId = parseInt(req.params.id);
-    const {name , age} = req.body;
-    const student = students.find(s => s.id === studentId);
-    if(!student){
-        return res.status(404).json({
-            success:false,
-            message:"student not found"
-        });
-    }
-    if(name){
-        student.name = name;
-    }
-    if(age){
-        student.age=age;
-    }
-    res.status(200).json({
-        success:true,
-        message:"student update successfult",
-        data:student
-    });
-
-});
-
 
 // تشغيل الخادم
 app.listen(port, () => {
